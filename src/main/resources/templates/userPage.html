@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.1/css/bootstrap.min.css"
+          integrity="sha512-T584yQ/tdRR5QwOpfvDfVQUidzfgc2339Lc8uBDtcp/wYu80d7jwBgAxbyMh0a9YM9F8N3tdErpFI8iaGx6x5g=="
+          crossorigin="anonymous" referrerpolicy="no-referrer">
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+            integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.1/js/bootstrap.min.js"
+            integrity="sha512-UR25UO94eTnCVwjbXozyeVd6ZqpaAE9naiEUBK/A+QDbfSTQFhPGj5lOR6d8tsgbBk84Ggb5A3EkjsOgPRPcKA=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid row">
+        <span class="navbar-brand col-1" th:text="${us.username}"></span>
+        <span class="navbar-brand col-1">with roles:</span>
+        <span class="navbar-brand col-1" th:each="role :${us.getRoles()}"
+              th:text="${role.role}"> </span>
+        <span class="navbar-brand col"></span>
+        <a class="nav-link col-1" style="color: gray" aria-current="page" href="/logout">Logout</a>
+    </div>
+</nav>
+<div style="height: 1200px; padding-right: 0; padding-left: 0" class="container-fluid row mh-100 no-gutters">
+    <div class="list-group list-group-flush col-2" id="myList" role="tablist">
+        <br>
+        <a class="list-group-item list-group-item-action active" data-toggle="list" href="#user" role="tab">User</a>
+    </div>
+    <div style="padding-left: 2%" class="tab-content col bg-light" id="myListContent">
+        <div style="padding-right: 3%" class="tab-pane active" id="user" role="tabpanel">
+            <br>
+            <H1>User information-page</H1>
+            <div style="border-color: rgb(241, 241, 241)" class="container-fluid border">
+                <div style="padding: 15px 1% 10px;background-color: rgb(240, 240, 240)" class="row">
+                    <div class="col">
+                        <h5>About user</h5>
+                    </div>
+                </div>
+                <div style="padding-top: 20px; padding-left: 2%; padding-right: 1%" class="row">
+                    <table class="table table-striped ">
+                        <thead>
+                            <tr>
+                                <th scope="col">id</th>
+                                <th scope="col">First Name</th>
+                                <th scope="col">Last Name</th>
+                                <th scope="col">Age</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Role</th>
+                            </tr>
+                        </thead>
+                            <tr>
+                                <th style="font-weight:normal" scope="col" th:text="${us.getId()}"></th>
+                                <th style="font-weight:normal" scope="col" th:text="${us.getUsername()}"></th>
+                                <th style="font-weight:normal" scope="col" th:text="${us.getLastName()}"></th>
+                                <th style="font-weight:normal" scope="col" th:text="${us.getAge()}"></th>
+                                <th style="font-weight:normal" scope="col" th:text="${us.getEmail()}"></th>
+                                <th style="font-weight:normal" scope="col">
+                                    <div th:each="role :${us.getRoles()}"
+                                         th:text="${role.role}">
+                                    </div>
+                                </th>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
